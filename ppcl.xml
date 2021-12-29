@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- See https://docs.kde.org/stable5/en/applications/katepart/highlight.html -->
+
+<language name="ppcl" version="1" kateversion="2.4" section="Sources" extensions="*.ppcl" author="Mitchell T. Paulus" >
+    <highlighting>
+        <list name="keywords1">
+            <item>IF</item>
+            <item>THEN</item>
+            <item>ELSE</item>
+        </list>
+        <list name="onoff">
+            <item>OFF</item>
+            <item>ON</item>
+        </list>
+        <contexts>
+            <context attribute="Line" lineEndContext="#pop" name="Line" >
+                <RegExpr attribute="Label" String="^[0-9]+" context="Line Contents" />
+
+                <!-- <keyword attribute="Keyword" context="#stay" String="keywords1" /> -->
+
+                <!-- <DetectChar attribute="String" context="String" char="&apos;" /> -->
+
+                <!-- <RegExpr String="//" attribute="Comment" context="Comment" /> -->
+
+                <!-- <RegExpr String="\b[A-Z_]+\b" attribute="Label" context="#stay" /> -->
+                <!-- <RegExpr String="\b-?([1-9][0-9]*|0)(\.[0-9]+)?\b" attribute="Numeric" context="#stay" /> -->
+                <!-- <RegExpr String="\b[a-z][A-Za-z0-9_]*(?=\()" attribute="Function" context="#stay" /> -->
+            </context>
+
+            <context name="Line Contents">
+                <keyword attribute="Keyword" context="#stay" String="keywords1" />
+                <keyword attribute="Keyword" context="#stay" String="onoff" />
+                <DetectChar attribute="Comment" context="Comment" char="C" />
+            </context>
+
+            <context name="Comment" attribute="Comment" lineEndContext="#pop">
+            </context>
+
+            <context name="String" attribute="String" lineEndContext="#stay">
+                <DetectChar attribute="String" context="#pop" char="&apos;" />
+            </context>
+        </contexts>
+        <itemDatas>
+            <itemData name="Normal Text" defStyleNum="dsNormal" />
+            <itemData name="Keyword" defStyleNum="dsKeyword" />
+            <itemData name="String" defStyleNum="dsString" />
+            <itemData name="Comment" defStyleNum="dsComment" />
+            <itemData name="ControlFlow" defStyleNum="dsControlFlow" />
+            <itemData name="Label" defStyleNum="dsFunction" />
+            <itemData name="Function" defStyleNum="dsFunction" />
+            <itemData name="Numeric" defStyleNum="dsFloat" />
+            <itemData name="Logical" defStyleNum="dsOperator" />
+            <itemData name="Constants" defStyleNum="dsConstant" />
+        </itemDatas>
+    </highlighting>
+    <general>
+        <comments>
+        </comments>
+        <keywords casesensitive="1" />
+    </general>
+</language>
+
+
+
+
+
