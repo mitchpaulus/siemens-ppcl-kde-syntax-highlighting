@@ -2,20 +2,49 @@
 
 <!-- See https://docs.kde.org/stable5/en/applications/katepart/highlight.html -->
 
-<language name="ppcl" version="1" kateversion="2.4" section="Sources" extensions="*.ppcl" author="Mitchell T. Paulus" >
+<language name="ppcl" version="1" kateversion="5.88" section="Sources" extensions="*.ppcl;*.PPCL" author="Mitchell T. Paulus" >
     <highlighting>
         <list name="keywords1">
             <item>IF</item>
             <item>THEN</item>
             <item>ELSE</item>
         </list>
-        <list name="onoff">
+        <list name="pointStatusIndicators">
+            <item>ALARM</item>
+            <item>ALMACK</item>
+            <item>AUTO</item>
+            <item>DEAD</item>
+            <item>LOW</item>
+            <item>OK</item>
+            <item>DAYMOD</item>
+            <item>FAILED</item>
+            <item>FAST</item>
+            <item>HAND</item>
+            <item>NGTMOD</item>
             <item>OFF</item>
             <item>ON</item>
+            <item>PRFON</item>
+            <item>SLOW</item>
+        </list>
+        <list name="operators">
+            <item>.ROOT.</item>
+            <item>.EQ.</item>
+            <item>.NE.</item>
+            <item>.LT.</item>
+            <item>.LE.</item>
+            <item>.GT.</item>
+            <item>.GE.</item>
+            <item>.AND.</item>
+            <item>.NAND.</item>
+            <item>.OR.</item>
+            <item>.XOR.</item>
+        </list>
+        <list name="goto">
+            <item>GOTO</item>
         </list>
         <contexts>
-            <context attribute="Line" lineEndContext="#pop" name="Line" >
-                <RegExpr attribute="Label" String="^[0-9]+" context="Line Contents" />
+            <context attribute="Label" lineEndContext="#pop" name="Line" >
+                <RegExpr attribute="Label" String="^[0-9]+ +" context="Line Contents" column="0" />
 
                 <!-- <keyword attribute="Keyword" context="#stay" String="keywords1" /> -->
 
@@ -28,17 +57,32 @@
                 <!-- <RegExpr String="\b[a-z][A-Za-z0-9_]*(?=\()" attribute="Function" context="#stay" /> -->
             </context>
 
-            <context name="Line Contents">
-                <keyword attribute="Keyword" context="#stay" String="keywords1" />
-                <keyword attribute="Keyword" context="#stay" String="onoff" />
-                <DetectChar attribute="Comment" context="Comment" char="C" />
+            <context name="Line Contents" attribute="Normal Text" lineEndContext="#pop">
+                <Detect2Chars attribute="Comment" context="Comment" char="C" char1=" " />
+                <RegExpr attribute="Comment" context="Comment" String="C$"  />
+                <keyword attribute="ControlFlow" context="#stay" String="keywords1" />
+                <keyword attribute="Keyword" context="#stay" String="pointStatusIndicators" />
+                <StringDetect String=".ROOT." context="#stay" attribute="Operator" />
+                <StringDetect String=".EQ." context="#stay" attribute="Operator" />
+                <StringDetect String=".NE." context="#stay" attribute="Operator" />
+                <StringDetect String=".LT." context="#stay" attribute="Operator" />
+                <StringDetect String=".LE." context="#stay" attribute="Operator" />
+                <StringDetect String=".GT." context="#stay" attribute="Operator" />
+                <StringDetect String=".GE." context="#stay" attribute="Operator" />
+                <StringDetect String=".AND." context="#stay" attribute="Operator" />
+                <StringDetect String=".NAND." context="#stay" attribute="Operator" />
+                <StringDetect String=".OR." context="#stay" attribute="Operator" />
+                <StringDetect String=".XOR." context="#stay" attribute="Operator" />
+                <DetectChar attribute="String" context="String" char="&quot;" />
+                <keyword attribute="ControlFlow" context="#stay" String="goto" />
+                <RegExpr String="\$[A-Za-z0-9]+" attribute="String" context="#stay" />
             </context>
 
             <context name="Comment" attribute="Comment" lineEndContext="#pop">
             </context>
 
-            <context name="String" attribute="String" lineEndContext="#stay">
-                <DetectChar attribute="String" context="#pop" char="&apos;" />
+            <context name="String" attribute="String" lineEndContext="#pop">
+                <DetectChar attribute="String" context="#pop" char="&quot;" />
             </context>
         </contexts>
         <itemDatas>
@@ -51,12 +95,12 @@
             <itemData name="Function" defStyleNum="dsFunction" />
             <itemData name="Numeric" defStyleNum="dsFloat" />
             <itemData name="Logical" defStyleNum="dsOperator" />
+            <itemData name="Operator" defStyleNum="dsOperator" />
             <itemData name="Constants" defStyleNum="dsConstant" />
+            <itemData name="BuiltIn" defStyleNum="dsBuiltIn" />
         </itemDatas>
     </highlighting>
     <general>
-        <comments>
-        </comments>
         <keywords casesensitive="1" />
     </general>
 </language>
