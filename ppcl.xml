@@ -4,11 +4,143 @@
 
 <language name="ppcl" version="1" kateversion="5.88" section="Sources" extensions="*.ppcl;*.PPCL" author="Mitchell T. Paulus" >
     <highlighting>
-        <list name="keywords1">
+        <!-- .ROOT. is handled with the rest of the dot '.' operators. -->
+        <list name="Arithmetic Functions">
+            <item>ATN</item>
+            <item>COM</item>
+            <item>COS</item>
+            <item>EXP</item>
+            <item>LOG</item>
+            <!-- <item>.ROOT.</item> -->
+            <item>SIN</item>
+            <item>SQRT</item>
+            <item>TAN</item>
+        </list>
+        <list name="Special Functions">
+            <item>ALMPRI</item>
+            <item>TOTAL</item>
+        </list>
+        <list name="Comment">
+            <item>C</item>
+        </list>
+        <list name="Activate/Deactivate PPCL Lines">
+            <item>ACT</item>
+            <item>DEACT</item>
+            <item>DISABL</item>
+            <item>ENABLE</item>
+        </list>
+        <list name="Closed Loop Control">
+            <item>ADAPTM</item>
+            <item>ADAPTS</item>
+            <item>LOOP</item>
+        </list>
+        <list name="Conditional Control">
             <item>IF</item>
             <item>THEN</item>
             <item>ELSE</item>
         </list>
+        <list name="COV Control">
+            <item>DISCOV</item>
+            <item>ENCOV</item>
+        </list>
+        <list name="Emergency Control">
+            <item>EMON</item>
+            <item>EMOFF</item>
+            <item>EMFAST</item>
+            <item>EMSLOW</item>
+            <item>EMAUTO</item>
+            <item>EMSET</item>
+        </list>
+
+        <list name="Dead Band Switching">
+            <item>DBSWIT</item>
+        </list>
+        <list name="Duty Cycling">
+            <item>DC</item>
+            <item>DCR</item>
+        </list>
+        <list name="Enthalpy Optimization">
+            <item>GOSUB</item>
+            <item>RETURN</item>
+        </list>
+        <list name="GOTO Statement">
+            <item>GOTO</item>
+        </list>
+
+        <list name="Local Variables">
+            <item>LOCAL</item>
+        </list>
+
+        <list name="Operator Interface Program">
+            <item>OIP</item>
+        </list>
+
+        <list name="Peak Demand Limiting">
+            <item>PDL</item>
+            <item>PDLDAT</item>
+            <item>PDLDPG</item>
+            <item>PDLMTR</item>
+            <item>PDLSET</item>
+        </list>
+
+        <list name="Point Commands">
+            <item>ON</item>
+            <item>OFF</item>
+            <item>STATE</item>
+            <item>AUTO</item>
+            <item>FAST</item>
+            <item>SLOW</item>
+            <item>SET</item>
+            <item>DAY</item>
+            <item>NIGHT</item>
+        </list>
+
+        <list name="Point Control">
+            <item>INITTO</item>
+            <item>MAX</item>
+            <item>MIN</item>
+            <item>TIMAVG</item>
+            <item>WAIT</item>
+        </list>
+
+
+        <list name="Point Control and Characteristics">
+            <item>ALARM</item>
+            <item>DISALM</item>
+            <item>ENALM</item>
+            <item>HLIMIT</item>
+            <item>LLIMIT</item>
+            <item>NORMAL</item>
+        </list>
+
+        <list name="Program Control">
+            <item>DEFINE</item>
+            <item>ONPWRT</item>
+            <item>SAMPLE</item>
+            <item>TABLE</item>
+        </list>
+
+        <list name="Release Statement">
+            <item>RELEAS</item>
+        </list>
+
+        <list name="Start/Stop Time Optimization">
+            <item>SSTO</item>
+            <item>SSTOCO</item>
+        </list>
+
+        <list name="Telephone ID Numbers">
+            <item>DPHONE</item>
+            <item>EPHONE</item>
+        </list>
+
+        <list name="Time of Day">
+            <item>HOLIDA</item>
+            <item>TOD</item>
+            <item>TODMOD</item>
+            <item>TODSET</item>
+        </list>
+
         <list name="pointStatusIndicators">
             <item>ALARM</item>
             <item>ALMACK</item>
@@ -26,42 +158,64 @@
             <item>PRFON</item>
             <item>SLOW</item>
         </list>
-        <list name="operators">
-            <item>.ROOT.</item>
-            <item>.EQ.</item>
-            <item>.NE.</item>
-            <item>.LT.</item>
-            <item>.LE.</item>
-            <item>.GT.</item>
-            <item>.GE.</item>
-            <item>.AND.</item>
-            <item>.NAND.</item>
-            <item>.OR.</item>
-            <item>.XOR.</item>
-        </list>
-        <list name="goto">
-            <item>GOTO</item>
+        <!-- Commented out items need to be defined elsewhere because of the non-alphanumeric characters -->
+        <list name="Resident Points">
+            <item>ALMCNT</item>
+            <item>ALMCT2</item>
+            <!-- <item>$BATT</item> -->
+            <item>CRTIME</item>
+            <item>DAY</item>
+            <item>DAYOFM</item>
+            <item>LINK</item>
+            <item>MONTH</item>
+            <item>NODE</item>
+            <!-- <item>$PDL</item> -->
+            <item>SECNDS</item>
+            <!-- <item>SECND1</item> -->
+            <item>TIME</item>
         </list>
         <contexts>
             <context attribute="Label" lineEndContext="#pop" name="Line" >
                 <RegExpr attribute="Label" String="^[0-9]+ +" context="Line Contents" column="0" />
-
-                <!-- <keyword attribute="Keyword" context="#stay" String="keywords1" /> -->
-
-                <!-- <DetectChar attribute="String" context="String" char="&apos;" /> -->
-
-                <!-- <RegExpr String="//" attribute="Comment" context="Comment" /> -->
-
-                <!-- <RegExpr String="\b[A-Z_]+\b" attribute="Label" context="#stay" /> -->
-                <!-- <RegExpr String="\b-?([1-9][0-9]*|0)(\.[0-9]+)?\b" attribute="Numeric" context="#stay" /> -->
-                <!-- <RegExpr String="\b[a-z][A-Za-z0-9_]*(?=\()" attribute="Function" context="#stay" /> -->
             </context>
 
             <context name="Line Contents" attribute="Normal Text" lineEndContext="#pop">
-                <Detect2Chars attribute="Comment" context="Comment" char="C" char1=" " />
-                <RegExpr attribute="Comment" context="Comment" String="C$"  />
-                <keyword attribute="ControlFlow" context="#stay" String="keywords1" />
+                <keyword attribute="Comment" context="Comment" String="Comment" />
+                <keyword attribute="Function" context="#stay" String="Activate/Deactivate PPCL Lines" />
+                <keyword attribute="Function" context="#stay" String="Closed Loop Control" />
+                <keyword attribute="ControlFlow" context="#stay" String="Conditional Control" />
+                <keyword attribute="Function" context="#stay" String="COV Control" />
+                <keyword attribute="Function" context="#stay" String="Emergency Control" />
+                <keyword attribute="Function" context="#stay" String="Dead Band Switching" />
+                <keyword attribute="Function" context="#stay" String="Duty Cycling" />
+                <keyword attribute="Function" context="#stay" String="Enthalpy Optimization" />
+                <keyword attribute="ControlFlow" context="#stay" String="GOTO Statement" />
+                <keyword attribute="Function" context="#stay" String="Local Variables" />
+                <keyword attribute="Function" context="#stay" String="Operator Interface Program" />
+                <keyword attribute="Function" context="#stay" String="Peak Demand Limiting" />
+                <keyword attribute="Function" context="#stay" String="Point Commands" />
+                <keyword attribute="Function" context="#stay" String="Point Control" />
+                <keyword attribute="Function" context="#stay" String="Point Control and Characteristics" />
+                <keyword attribute="Function" context="#stay" String="Program Control" />
+                <keyword attribute="Function" context="#stay" String="Release Statement" />
+                <keyword attribute="Function" context="#stay" String="Start/Stop Time Optimization" />
+                <keyword attribute="Function" context="#stay" String="Telephone ID Numbers" />
+                <keyword attribute="Function" context="#stay" String="Time of Day" />
+
                 <keyword attribute="Keyword" context="#stay" String="pointStatusIndicators" />
+                <StringDetect String="@OPER" context="#stay" attribute="Constant" />
+                <StringDetect String="@SMOKE" context="#stay" attribute="Constant" />
+                <StringDetect String="@EMER" context="#stay" attribute="Constant" />
+                <StringDetect String="@PDL" context="#stay" attribute="Constant" />
+                <StringDetect String="@NONE" context="#stay" attribute="Constant" />
+                <keyword attribute="Constant" context="#stay" String="At Priority Status Indicators" />
+                <keyword attribute="Constant" context="#stay" String="Resident Points" />
+                <StringDetect String="$BATT" context="#stay" attribute="Resident Points" />
+                <StringDetect String="$PDL" context="#stay" attribute="Resident Points" />
+                <RegExpr String="SECND[1-7]" attribute="Resident Points" context="#stay" />
+                <keyword attribute="Function" context="#stay" String="Arithmetic Functions" />
+                <keyword attribute="Function" context="#stay" String="Special Functions" />
+
                 <StringDetect String=".ROOT." context="#stay" attribute="Operator" />
                 <StringDetect String=".EQ." context="#stay" attribute="Operator" />
                 <StringDetect String=".NE." context="#stay" attribute="Operator" />
@@ -74,17 +228,57 @@
                 <StringDetect String=".OR." context="#stay" attribute="Operator" />
                 <StringDetect String=".XOR." context="#stay" attribute="Operator" />
                 <DetectChar attribute="String" context="String" char="&quot;" />
-                <keyword attribute="ControlFlow" context="#stay" String="goto" />
-                <RegExpr String="\$[A-Za-z0-9]+" attribute="String" context="#stay" />
+                <RegExpr String="\$[A-Za-z0-9]+" attribute="Variable" context="#stay" />
             </context>
 
             <context name="Comment" attribute="Comment" lineEndContext="#pop">
             </context>
 
             <context name="String" attribute="String" lineEndContext="#pop">
+                <DetectChar attribute="SpecialString" context="Variable Substitution" char="%" />
                 <DetectChar attribute="String" context="#pop" char="&quot;" />
             </context>
+
+            <context name="Variable Substitution" attribute="SpecialString" lineEndContext="#pop">
+                <DetectChar attribute="SpecialString" context="#pop" char="%" />
+            </context>
+
         </contexts>
+
+
+    <!-- "dsNormal"         -> NormalTok -->
+    <!-- "dsKeyword"        -> KeywordTok -->
+    <!-- "dsDataType"       -> DataTypeTok -->
+    <!-- "dsDecVal"         -> DecValTok -->
+    <!-- "dsBaseN"          -> BaseNTok -->
+    <!-- "dsFloat"          -> FloatTok -->
+    <!-- "dsConstant"       -> ConstantTok -->
+    <!-- "dsChar"           -> CharTok -->
+    <!-- "dsSpecialChar"    -> SpecialCharTok -->
+    <!-- "dsString"         -> StringTok -->
+    <!-- "dsVerbatimString" -> VerbatimStringTok -->
+    <!-- "dsSpecialString"  -> SpecialStringTok -->
+    <!-- "dsImport"         -> ImportTok -->
+    <!-- "dsComment"        -> CommentTok -->
+    <!-- "dsDocumentation"  -> DocumentationTok -->
+    <!-- "dsAnnotation"     -> AnnotationTok -->
+    <!-- "dsCommentVar"     -> CommentVarTok -->
+    <!-- "dsOthers"         -> OtherTok -->
+    <!-- "dsFunction"       -> FunctionTok -->
+    <!-- "dsVariable"       -> VariableTok -->
+    <!-- "dsControlFlow"    -> ControlFlowTok -->
+    <!-- "dsOperator"       -> OperatorTok -->
+    <!-- "dsBuiltIn"        -> BuiltInTok -->
+    <!-- "dsExtension"      -> ExtensionTok -->
+    <!-- "dsPreprocessor"   -> PreprocessorTok -->
+    <!-- "dsAttribute"      -> AttributeTok -->
+    <!-- "dsRegionMarker"   -> RegionMarkerTok -->
+    <!-- "dsInformation"    -> InformationTok -->
+    <!-- "dsWarning"        -> WarningTok -->
+    <!-- "dsAlert"          -> AlertTok -->
+    <!-- "dsError"          -> ErrorTok -->
+    <!-- _                  -> NormalTok -->
+
         <itemDatas>
             <itemData name="Normal Text" defStyleNum="dsNormal" />
             <itemData name="Keyword" defStyleNum="dsKeyword" />
@@ -96,8 +290,10 @@
             <itemData name="Numeric" defStyleNum="dsFloat" />
             <itemData name="Logical" defStyleNum="dsOperator" />
             <itemData name="Operator" defStyleNum="dsOperator" />
-            <itemData name="Constants" defStyleNum="dsConstant" />
+            <itemData name="Constant" defStyleNum="dsConstant" />
             <itemData name="BuiltIn" defStyleNum="dsBuiltIn" />
+            <itemData name="SpecialString" defStyleNum="dsSpecialString" />
+            <itemData name="Variable" defStyleNum="dsVariable" />
         </itemDatas>
     </highlighting>
     <general>
