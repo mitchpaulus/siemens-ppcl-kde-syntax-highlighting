@@ -208,7 +208,6 @@
                 <StringDetect String="@EMER" context="#stay" attribute="Constant" />
                 <StringDetect String="@PDL" context="#stay" attribute="Constant" />
                 <StringDetect String="@NONE" context="#stay" attribute="Constant" />
-                <keyword attribute="Constant" context="#stay" String="At Priority Status Indicators" />
                 <keyword attribute="Constant" context="#stay" String="Resident Points" />
                 <StringDetect String="$BATT" context="#stay" attribute="Resident Points" />
                 <StringDetect String="$PDL" context="#stay" attribute="Resident Points" />
@@ -300,8 +299,3 @@
         <keywords casesensitive="1" />
     </general>
 </language>
-
-
-
-
-
