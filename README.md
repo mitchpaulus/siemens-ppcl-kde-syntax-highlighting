@@ -5,12 +5,12 @@ It is an XML file in the KDE syntax highlighting schema.
 
 [Pandoc](https://pandoc.org/) makes use of this format.
 
-You can use this file to syntax highlight your markdown files like:
+You can use this file to syntax highlight your markdown files like (without the `>` characters):
 
-```markdown
-\`\`\`ppcl
-00100	IF("%A%SF_S" .EQ. OFF .OR. "%A%SF_C" .EQ. OFF) THEN SET(0,"%A%STOT")
-\`\`\`
+```
+> ```ppcl
+> 00100	IF("%A%SF_S" .EQ. OFF .OR. "%A%SF_C" .EQ. OFF) THEN SET(0,"%A%STOT")
+> ```
 ```
 
 and then compile using the Pandoc `--syntax-definition` option.
